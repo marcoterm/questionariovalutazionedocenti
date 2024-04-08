@@ -330,22 +330,25 @@ totalone=$4
     	echo "<td>$sommapunteggistudenti</td> " >> $wdir/stampata.html
     	echo "<td>$mediaistituto</td>" >> $wdir/stampata.html
   	echo "</tr>" >> $wdir/stampata.html
+
+if [ $stampotabellaautovalutazione -eq 1 ]; then
 ## Elimino il punteggio di autovalutazione e la conversione in Ennesimi. E pertanto anche il totale. Quest'anno AS 2020-21 non servono.
-#  	echo "<tr>" >> $wdir/stampata.html
-#    	echo "<td>Totale punteggio questionario studenti (in $ennesimimassimitestuali, arrotondato)</td>" >> $wdir/stampata.html
-#    	echo "<td>$puntennesimi</td>" >> $wdir/stampata.html
-#    	echo "<td>$mediaennesimi</td>" >> $wdir/stampata.html
-#  	echo "</tr>" >> $wdir/stampata.html
-#  	echo "<tr>" >> $wdir/stampata.html
-#    	echo "<td>Totale punteggio questionario autovalutazione</td>" >> $wdir/stampata.html
-#    	echo "<td>$puntautovalutazione</td>" >> $wdir/stampata.html
-#    	echo "<td>$mediaautovalutazione</td>" >> $wdir/stampata.html
-#  	echo "</tr>" >> $wdir/stampata.html
-#  	echo "<tr>" >> $wdir/stampata.html
-#    	echo "<td><b>TOTALE COMPLESSIVO</b></td>" >> $wdir/stampata.html
-#    	echo "<td><b>$totalone</b></td>" >> $wdir/stampata.html
-#    	echo "<td><b>$mediatotale</b></td>" >> $wdir/stampata.html
-#  	echo "</tr>" >> $wdir/stampata.html
+  	echo "<tr>" >> $wdir/stampata.html
+    	echo "<td>Totale punteggio questionario studenti (in $ennesimimassimitestuali, arrotondato)</td>" >> $wdir/stampata.html
+    	echo "<td>$puntennesimi</td>" >> $wdir/stampata.html
+    	echo "<td>$mediaennesimi</td>" >> $wdir/stampata.html
+  	echo "</tr>" >> $wdir/stampata.html
+  	echo "<tr>" >> $wdir/stampata.html
+    	echo "<td>Totale punteggio questionario autovalutazione</td>" >> $wdir/stampata.html
+    	echo "<td>$puntautovalutazione</td>" >> $wdir/stampata.html
+    	echo "<td>$mediaautovalutazione</td>" >> $wdir/stampata.html
+  	echo "</tr>" >> $wdir/stampata.html
+  	echo "<tr>" >> $wdir/stampata.html
+    	echo "<td><b>TOTALE COMPLESSIVO</b></td>" >> $wdir/stampata.html
+    	echo "<td><b>$totalone</b></td>" >> $wdir/stampata.html
+    	echo "<td><b>$mediatotale</b></td>" >> $wdir/stampata.html
+  	echo "</tr>" >> $wdir/stampata.html
+fi
 	echo "</table>" >> $wdir/stampata.html
 
 }
@@ -358,26 +361,28 @@ totalone=$4
 ## 2 individuare i valori che mi servono
 ## 3 vedere quali funzioni posso già sfruttare (cfr. mediaclasse() )
 
-#rm -f $wdir/medieclassi.csv
-#touch $wdir/medieclassi.csv
-#while read profe; do
+if [ $stampotabellaautovalutazione -eq 1 ]; then
+rm -f $wdir/medieclassi.csv
+touch $wdir/medieclassi.csv
+while read profe; do
 ##while read classe; do
-#sommapunteggistudenti=$(sommapunteggidomande $profe $numdomandemedia)
-#sommapunteggistudentiro=$(arrotonda $sommapunteggistudenti)
-#	#Conversione in 40esimi
-#puntennesimi=$(calcoloennesimi $sommapunteggistudenti $punteggiomassimostudenti $ennesimimassimi)
-#puntennesimiro=$(arrotonda $puntennesimi)
-#
-#puntautovalutazione=$(leggipunteggioautovalutazione $profe $fileautovalutazione)
-#
-#totalone=$(sommapunteggifinale $puntennesimi $puntautovalutazione)
-#totalonero=$(arrotonda $totalone)
-#
-#echo "$profe;$sommapunteggistudenti" >> $wdir/medieclassi.csv
-#
-##done < $wdir/listaprof.txt
-#done < $wdir/monoprof.txt
-##done < $wdir/listaclassi.txt
+sommapunteggistudenti=$(sommapunteggidomande $profe $numdomandemedia)
+sommapunteggistudentiro=$(arrotonda $sommapunteggistudenti)
+	#Conversione in 40esimi
+puntennesimi=$(calcoloennesimi $sommapunteggistudenti $punteggiomassimostudenti $ennesimimassimi)
+puntennesimiro=$(arrotonda $puntennesimi)
+
+puntautovalutazione=$(leggipunteggioautovalutazione $profe $fileautovalutazione)
+
+totalone=$(sommapunteggifinale $puntennesimi $puntautovalutazione)
+totalonero=$(arrotonda $totalone)
+
+echo "$profe;$sommapunteggistudenti" >> $wdir/medieclassi.csv
+
+#done < $wdir/listaprof.txt
+done < $wdir/monoprof.txt
+#done < $wdir/listaclassi.txt
+fi
 #########
 
 while read profe; do
@@ -531,12 +536,14 @@ fi
 	### QUA VA LA TABELLA COI RISULTATI ####
 	stampatabellina $sommapunteggistudenti $puntennesimiro $puntautovalutazione $totalonero
 
-	#echo "</br>" >> $wdir/stampata.html
-	#echo "<p>L'insegnante $profe ha conseguito, dal questionario somministrato ai propri studenti, un punteggio totale di $sommapunteggistudentiro" >> $wdir/stampata.html
-	#echo "</br>Il punteggio totalizzato &egrave; dato dalla somma della media delle $numdomandemedia domande (colonna 2)</p>" >> $wdir/stampata.html
-	#echo "<p>Il suddetto punteggio &egrave; convertito in $ennesimimassimitestuali: $puntennesimiro</p>" >> $wdir/stampata.html
-	#echo "<p>Inoltre, il punteggio estratto dal questionario di autovalutazione e validato dal Dirigente Scolastico risulta essere $puntautovalutazione</p>" >> $wdir/stampata.html
-	#echo "<h2><b>La somma dei punteggi in $ennesimimassimitestuali e del questionario di autovalutazione &egrave; pari a: $totalonero</b></h2>" >> $wdir/stampata.html
+    if [ $stampotabellaautovalutazione -eq 1 ]; then
+	echo "</br>" >> $wdir/stampata.html
+	echo "<p>L'insegnante $profe ha conseguito, dal questionario somministrato ai propri studenti, un punteggio totale di $sommapunteggistudentiro" >> $wdir/stampata.html
+	echo "</br>Il punteggio totalizzato &egrave; dato dalla somma della media delle $numdomandemedia domande (colonna 2)</p>" >> $wdir/stampata.html
+	echo "<p>Il suddetto punteggio &egrave; convertito in $ennesimimassimitestuali: $puntennesimiro</p>" >> $wdir/stampata.html
+	echo "<p>Inoltre, il punteggio estratto dal questionario di autovalutazione e validato dal Dirigente Scolastico risulta essere $puntautovalutazione</p>" >> $wdir/stampata.html
+	echo "<h2><b>La somma dei punteggi in $ennesimimassimitestuali e del questionario di autovalutazione &egrave; pari a: $totalonero</b></h2>" >> $wdir/stampata.html
+    fi
 
 	#Infine, per comodità del preside, realizzo un file CSV coi punteggi finali:
 	if [ $scrivirisultatifinali -eq 1 ]; then

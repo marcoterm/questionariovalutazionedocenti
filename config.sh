@@ -8,10 +8,13 @@ secondapagina=1
 elencodomande=./listadomande.sh
 
 numdomandemedia=18
-punteggiomassimostudenti=57
+punteggiomassimostudenti=54
+# Ovvero 3 * 18 = 54, considerando che le risposte sono: in totale disaccordo = 0; parzialmente in disaccordo = 1; parzialmente d'accordo = 2; Completamente d'accordo = 3
 ennesimimassimi=40
 ennesimimassimitestuali=quarantesimi
 fileautovalutazione=AUTOVALUTAZIONEVUOTO.csv
+stampotabellaautovalutazione=0
+## Elimino il punteggio di autovalutazione e la conversione in Ennesimi. E pertanto anche il totale. Quest'anno AS 2020-21 non servono.
 scrivirisultatifinali=1
 csvds=RISULTATIFINALI_x_DS.csv
 

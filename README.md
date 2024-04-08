@@ -30,5 +30,7 @@ Per stampare la media delle domande dell'istituto, occorre modificare manualment
 * ennesimimassimi [integer] Se si vuole, conversione in ennesimi della domanda. Se non si intende convertire, inserire ennesimimassimi=$punteggiomassimostudenti
 * ennesimimassimitestuali [string] Il valore di prima, ma in lettere (per la descrizione)
 * fileautovalutazione [string] Path del file CSV, separato da |, contenente i punteggi dell'autovalutazione. Del tipo: Docente1|22
+* stampotabellaautovalutazione [0|1] Opzione per attivare (1) o meno (0) la gestione dei risultati di autovalutazione e la relativa stampa della tabella riassuntiva, sommata in ennesimi
+    * Il questionario di autovalutazione è un'ulteriore modulo, con relativi punteggi per ogni singolo docente, in genere somministrato direttamente al docente stesso, il cui punteggio veniva poi sommato agli ennesimi (quarantesimi, in genere) del questionario destinato agli studenti. È stao implementato (e poi dismesso) per l'attribuzione del bonus stipendiale ai docenti, secondo una specifica graduatoria
 * scrivirisultatifinali [0|1] Opzione per produrre un CSV riassuntivo finale, per una più comoda lettura da parte del DS
 * csvds [string ]Path del CSV coi risultati finali (se scrivirisultatifinali=1). NB: Verrà sovrascritto qualunque file già esistente!
