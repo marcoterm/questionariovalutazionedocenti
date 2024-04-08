@@ -21,7 +21,7 @@ Per stampare la media delle domande dell'istituto, occorre modificare manualment
 * isriservato	[0|1] Opzione se stampare o meno anche i risultati mediati del prof per singola classe: 0 NO, 1 SI
 * domandeintabella [0|1] Opzione se listare le domande incorporate dentro (19 o fuori (0), dopo l'intestazione, nella tabella
 * secondapagina [0|1] Opzione per stampare anche i risultati e i punteggi finali, con tanto di somma di punteggio di autovalutazione. Questa opzione necessita una serie di altre opzioni (vedi sotto)
-* elencodomande [string] File contenente una serie di variabili bash (pari a $numtotdomande) del tipo dom1=, dom2=, ecc... Con il testo delle domande, con gli ESCAPE dell'HTML (&egrave;) ed eventualmente un </br> finale, per ordine. Ovvero dom3="Questa &egrave; la domanda Tre</br>"
+* elencodomande [string] File contenente una serie di variabili bash (pari a $numtotdomande) del tipo dom1=, dom2=, ecc... Con il testo delle domande, con gli ESCAPE dell'HTML (&egrave;) ed eventualmente un </br> finale, per ordine. Ovvero ```dom3="Questa &egrave; la domanda Tre</br>"```
     * la domanda relativa ai coordinatori di classe, num 18, è volutamente saltata in quanto spesso gli studenti rispondevano comunque a questa domanda anche per i docenti non coordinatori, all'interno del Modulo Google, falsando pertanto calcoli e risposte. Pertanto non viene considerata nell'output e nei punteggi (il file domanda18.sh è solo un appunto della stessa domanda, già con i relativi escape, pronto da eventualmente includere)
 
 ### Impostazioni per la stampa dei risultati (opz. secondapagina=1)
