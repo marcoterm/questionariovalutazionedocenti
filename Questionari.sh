@@ -350,19 +350,8 @@ totalone=$4
 
 }
 
-## Test vari
-#mediaclasse DiMarzo  1
-#mediadomande 1
-#mediaprofeclasse DiFeo 1A 2
-#classidelprof DiFeo
-#iscoordinatore DiFeo 1E
-#if iscoordinatore DiFeo 1E; then echo "DiFeo è coordinatore della 1E"; else echo "DiFeo non è coordinatrice della 1E"; fi
-#sommapunteggidomande DiFeo 16
-#calcoloennesimi 32 48 40
-
-
 ### WORK IN PROGRESS ####
-## Siccome Signori è pignolo, mi calcolo anche le medie per le classi, a partire dai profe
+## Calcolo anche le medie per le classi, a partire dai profe
 
 ## CAPIRE:
 ## 1 Come sviluppare il ciclo: lavoro per classi o per docente?
